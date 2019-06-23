@@ -10,13 +10,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let urls = [
-//            "https://mydomain.com/first.jpg",
-//            "https://mydomain.com/second.jpg"
-//            ...
-            
-            "" // REMOVE THIS LINE
-        ]
+        let urls = Array(1...60).compactMap { return "https://picsum.photos/id/\($0)/1280/720.jpg"}
         
         let timelapseBuilder = TimeLapseBuilder(photoURLs: urls)
         timelapseBuilder.build({ progress in

@@ -26,19 +26,19 @@ class TimeLapseBuilder: NSObject {
     }
     
     func build(_ progress: @escaping ((Progress) -> Void), success: @escaping ((URL) -> Void), failure: @escaping ((NSError) -> Void)) {
-        let inputSize = CGSize(width: 4000, height: 3000)
+        let inputSize = CGSize(width: 1280, height: 720)
         let outputSize = CGSize(width: 1280, height: 720)
         var error: NSError?
         
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-        let videoOutputURL = URL(fileURLWithPath: documentsPath.appendingPathComponent("AssembledVideo.mov"))
+        let videoOutputURL = URL(fileURLWithPath: documentsPath.appendingPathComponent("AssembledVideo.mp4"))
         
         do {
             try FileManager.default.removeItem(at: videoOutputURL)
         } catch {}
         
         do {
-            try videoWriter = AVAssetWriter(outputURL: videoOutputURL, fileType: AVFileType.mov)
+            try videoWriter = AVAssetWriter(outputURL: videoOutputURL, fileType: AVFileType.mp4)
         } catch let writerError as NSError {
             error = writerError
             videoWriter = nil
